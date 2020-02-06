@@ -1,17 +1,16 @@
 const queueUl = document.querySelector(".list-queue");
 const queueInput = document.querySelector(".queue-inputp");
-const warningTopQueue = document.querySelector("#queue-container .warning-top");
+const $warningTopQueue = document.querySelector(
+  "#queue-container .warning-top"
+);
 const $warningBottomQueue = document.querySelector(
   "#queue-container .warning-bottom"
 );
-const addQueue = document.querySelector(".btn-add-queue");
-const dequeue = document.querySelector(".btn-take-dequeue");
-const sizeStructure = 10;
 
 const clearQueueInput = () => {
   queueInput.value = "";
 };
-const addAndQueue = () => {
+const addAndEnqueue = () => {
   if (queue.enqueue(queueInput.value) === -1) {
     generateWarningQueue("overflow");
   } else {
@@ -29,17 +28,16 @@ const takeAndDequeue = () => {
   console.log(queue.display());
 };
 
+const addQueue = document.querySelector(".btn-add-queue");
+const dequeue = document.querySelector(".btn-take-dequeue");
+const sizeStructure = 10;
 const queue = new QueueDataStructure(sizeStructure);
-addQueue.addEventListener("click", addAndQueue);
+addQueue.addEventListener("click", addAndEnqueue);
 dequeue.addEventListener("click", takeAndDequeue);
 
-// create stack instance, initialize DOM
-
-// generate new HTML list
-
 const generateDomlistQueue = () => {
-  warningTopQueue.style.display = "none";
-  warningBottomQueue.style.display = "none";
+  $warningTopQueue.style.display = "none";
+  $warningBottomQueue.style.display = "none";
   queueUl.innerHTML = "";
   let len = queue.display().length;
   let size = sizeStructure - len;
@@ -59,12 +57,12 @@ const generateDomlistQueue = () => {
 generateDomlistQueue();
 
 // Generate warnings
-const generateWarningQueue = type => {
+function generateWarningQueue(type) {
   if (type === "underflow") {
-    warningBottomQueue.style.display = "block";
-    warningBottomQueue.innerText = type;
+    $warningBottomQueue.style.display = "block";
+    $warningBottomQueue.innerText = type;
   } else if (type === "overflow") {
-    warningTopQueue.style.display = "block";
-    warningTopQueue.innerText = type;
+    $warningTopQueue.style.display = "block";
+    $warningTopQueue.innerText = type;
   }
-};
+}
