@@ -5,6 +5,12 @@ ul.list-stack {
   transform: rotate(180deg);
   margin-bottom: 0px;
 }
+.pseudo {
+  width: 50%;
+}
+.pseudo img {
+  width: 100%;
+}
 
 ul.list-stack > li {
   list-style: none;
